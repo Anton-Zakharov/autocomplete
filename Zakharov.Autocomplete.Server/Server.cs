@@ -67,7 +67,7 @@ namespace Zakharov.Autocomplete.Server {
         /// <param name="port">номер порта</param>
         private void Listening(object port) {
             try {
-                // Создаем и запускаем TCP_сервер для прослушивания соединений по заданному порту на всех доступных сетевых интерфейсах.
+                // Создаем и запускаем TCP-сервер для прослушивания соединений по заданному порту на всех доступных сетевых интерфейсах.
                 Console.WriteLine("Starting server...");               
                 TcpServer = new TcpListener(IPAddress.Any, (int)port);
                 TcpServer.Start();
@@ -115,12 +115,11 @@ namespace Zakharov.Autocomplete.Server {
                 Console.WriteLine("Client connected");
                 // Получаем поток с данными
                 NetworkStream stream = (client as TcpClient).GetStream();
-                int length;
                 Console.WriteLine("Processing request...");
                 #region Прочитываем все переданные данные
                 while (stream.DataAvailable) {
                     // Считываем данные в буфер байтов
-                    length = stream.Read(buffer, 0, buffer.Length);
+                    int length = stream.Read(buffer, 0, buffer.Length);
                     // Преобразуем массив байт в строку ASCII
                     request += System.Text.Encoding.ASCII.GetString(buffer, 0, length);                   
                 }
