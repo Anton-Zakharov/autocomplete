@@ -7,8 +7,7 @@ using Zakharov.Autocomplete.Model;
 
 namespace Zakharov.Autocomplete.Console {
     class Program {
-        static void Main(string[] args) {
-            DateTime before = DateTime.Now;
+        static void Main(string[] args) {           
             Dictionary dictionary = new Dictionary(10);
             // Получаем количество слов в частотном словаре
             int dictionaryCount = Int32.Parse(System.Console.ReadLine());
@@ -44,10 +43,7 @@ namespace Zakharov.Autocomplete.Console {
                 foreach (string autocomplete in dictionary.GetAutocomplete(prefix)) {
                     System.Console.WriteLine(autocomplete);
                 }
-            }
-            DateTime after = DateTime.Now;
-            DateTime duration = new DateTime(after.Ticks - before.Ticks);
-            System.Console.WriteLine(String.Format("{0}:{1}:{2}.{3}", duration.Hour, duration.Minute, duration.Second, duration.Millisecond));
+            }            
         }
     }
 }
