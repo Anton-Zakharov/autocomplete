@@ -32,12 +32,11 @@ namespace Zakharov.Autocomplete.Client {
                 byte[] buffer = new byte[256];
                 string response = "";
                 #region Прочитываем все переданные данные
-                //while (stream.DataAvailable) {
-                    // Считываем данные в буфер байтов
-                    int length = stream.Read(buffer, 0, buffer.Length);
+                int length;
+                while ((length = stream.Read(buffer, 0, buffer.Length)) != 0) {
                     // Преобразуем массив байт в строку ASCII
                     response += System.Text.Encoding.ASCII.GetString(buffer, 0, length);
-                //}
+                }
                 #endregion
                 System.Console.WriteLine("\nAutocomplete:\n"+response);
                 // Закрываем поток данных и соединение с сервером
